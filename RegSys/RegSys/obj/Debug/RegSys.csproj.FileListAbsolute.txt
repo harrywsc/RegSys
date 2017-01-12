@@ -1,0 +1,8 @@
+D:\GithubPro\RegSys\RegSys\RegSys\bin\Debug\RegSys.exe.config
+D:\GithubPro\RegSys\RegSys\RegSys\bin\Debug\RegSys.exe
+D:\GithubPro\RegSys\RegSys\RegSys\bin\Debug\RegSys.pdb
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.Form1.resources
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.Properties.Resources.resources
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.csproj.GenerateResource.Cache
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.exe
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.pdb
