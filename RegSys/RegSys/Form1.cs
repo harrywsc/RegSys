@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,24 +14,37 @@ using System.Xml;
 namespace RegSys
 {
     public partial class Form1 : Form
-    {
-        int times = 0;
+    {       
+        //调用API
+        [System.Runtime.InteropServices.DllImport("user32", CharSet = System.Runtime.InteropServices.CharSet.Auto, ExactSpelling = true)]
+        public static extern IntPtr GetFocus(); //获得本窗体的句柄
+        [System.Runtime.InteropServices.DllImport("user32", EntryPoint = "SetForegroundWindow")]
+        public static extern bool SetFocus(IntPtr hWnd);//设置此窗体为活动窗体
+
+        
+
         public Form1()
         {
             InitializeComponent();
+            Util.hanfm1 = this.Handle;
             webBrowser1.IsWebBrowserContextMenuEnabled = false;
+            RegistryHelper rh = new RegistryHelper();
+            string disableTaskMgr = "00000001";
+            rh.SetRegistryData(Registry.CurrentUser, @"Software\Microsoft\Windows\CurrentVersion\Policies\system", "DisableTaskMgr", disableTaskMgr,RegistryValueKind.DWord);
             //webBrowser1.Url = new Uri("http://www.acfun.tv");
-            string [] webPath = new string[1];            
+            string [] webPath = new string[2];            
             ReadPath(@".\FilePath.cfg.xml",webPath);
             webBrowser1.Navigate(webPath[0]);
+            Util.password = webPath[1];
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (times<10)
+            Util.passwordChecking = true;
+            Form2 fm2 = new Form2();
+            fm2.ShowDialog();
+            if (!Util.passwordResult)
             {
-                times++;
-                MessageBox.Show("窗口禁止关闭！");
                 e.Cancel = true;
             }
         }
@@ -65,10 +80,23 @@ namespace RegSys
             {
                 XmlElement xe = (XmlElement)xn1;// 将节点转换为元素，便于得到节点的属性值
                 XmlNodeList xnl0 = xe.ChildNodes;
-                webpath[0] = xnl0.Item(0).InnerText;
+                webpath[0] = xnl0.Item(0).InnerText;//导入网页地址
+                webpath[1] = xnl0.Item(1).InnerText;//导入密码信息
             }
             reader.Close();
         }
 
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (!Util.passwordChecking)
+            {
+                if (Util.hanfm1 != GetFocus())
+                {
+                    SetFocus(Util.hanfm1);
+                }
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+        
     }
 }

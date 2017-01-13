@@ -6,3 +6,5 @@ D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.Properties.Resources.resource
 D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.csproj.GenerateResource.Cache
 D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.exe
 D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.pdb
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.csprojResolveAssemblyReference.cache
+D:\GithubPro\RegSys\RegSys\RegSys\obj\Debug\RegSys.Form2.resources
